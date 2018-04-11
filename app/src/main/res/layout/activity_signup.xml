@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupActivity"
+    tools:context=".activity.SignupActivity"
     android:background="@drawable/login_bg"
     android:layout_alignParentBottom="true"
     android:layout_alignParentTop="true">
@@ -17,7 +17,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="303dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -76,33 +76,46 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/ET_nama_lengkap"
+                    android:id="@+id/etNik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/edittextstyle"
+                    android:drawableRight="@drawable/ic_account_circle_black_24dp"
+                    android:ems="1"
+                    android:hint="Masukan Nomor NIK"
+                    android:inputType="number"
+                    android:textColor="#000"
+                    android:textColorHint="#888" />
+
+                <EditText
+                    android:id="@+id/etNamaLengkap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/edittextstyle"
                     android:drawableRight="@drawable/ic_account_box_black_24dp"
-                    android:ems="10"
+                    android:ems="1"
                     android:hint="Masukan Nama Lengkap"
                     android:inputType="text"
                     android:textColor="#000"
                     android:textColorHint="#888" />
 
                 <EditText
-                    android:id="@+id/ET_email"
+                    android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/edittextstyle"
                     android:drawableRight="@drawable/ic_email_black_24dp"
-                    android:ems="10"
+                    android:ems="1"
                     android:hint="Masukan Email"
                     android:inputType="textEmailAddress"
                     android:textColor="#000"
                     android:textColorHint="#888" />
 
                 <EditText
-                    android:id="@+id/ET_sandi"
+                    android:id="@+id/etSandi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -115,31 +128,32 @@
                     android:textColorHint="#888" />
 
                 <EditText
-                    android:id="@+id/ET_konfirmasi_sandi"
+                    android:id="@+id/etKonfirmasiSandi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/edittextstyle"
                     android:drawableRight="@drawable/ic_vpn_key_black_24dp"
-                    android:ems="10"
+                    android:ems="1"
                     android:hint="Masukan Konfirmasi Sandi"
                     android:inputType="textPassword"
                     android:textColor="#000"
                     android:textColorHint="#888" />
 
                 <EditText
-                    android:id="@+id/ET_tanggal_lahir"
+                    android:id="@+id/etTanggalLahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/edittextstyle"
                     android:drawableRight="@drawable/ic_date_range_black_24dp"
-                    android:ems="10"
+                    android:ems="1"
                     android:hint="Masukan Tanggal Lahir"
                     android:inputType="date"
                     android:textColor="#000"
-                    android:textColorHint="#888" />
-
+                    android:textColorHint="#888"
+                    android:clickable="true"
+                    android:focusable="false"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -148,7 +162,7 @@
                         android:orientation="horizontal">
 
                         <RadioGroup
-                            android:id="@+id/RG_jenis_kelamin"
+                            android:id="@+id/grJenisKelamin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
@@ -159,14 +173,14 @@
                                 android:text="Jenis Kelamin :" />
 
                             <RadioButton
-                                android:id="@+id/RB_laki_laki"
+                                android:id="@+id/rbLakiLaki"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="9dp"
                                 android:text="Laki-laki" />
 
                             <RadioButton
-                                android:id="@+id/RB_perempuan"
+                                android:id="@+id/rbPerempuan"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Perempuan" />
@@ -175,38 +189,42 @@
 
                 </LinearLayout>
 
-
-
-
                 <EditText
-                    android:id="@+id/ET_no_handphone"
+                    android:id="@+id/etNomorHp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/edittextstyle"
                     android:drawableRight="@drawable/ic_stay_current_portrait_black_24dp"
-                    android:ems="10"
+                    android:ems="1"
                     android:hint="Masukan Nomor Handphone"
                     android:inputType="number"
                     android:textColor="#000"
                     android:textColorHint="#888" />
 
-
                 <Button
-                    android:id="@+id/B_signup"
+                    android:id="@+id/bSignup"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/btn_left"
-                    android:drawableRight="@drawable/ic_send_black_24dp"
+                    android:background="@drawable/bg_rectangle_button"
                     android:gravity="center"
                     android:text="Create Account"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/tvSignin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="Already Have an Account. Sign in here?"
+                    android:textAlignment="center"
+                    android:textColor="#dedede"
+                    android:textSize="15sp" />
 
             </LinearLayout>
-
 
         </LinearLayout>
 
