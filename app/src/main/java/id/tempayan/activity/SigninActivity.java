@@ -112,11 +112,15 @@ public class SigninActivity extends AppCompatActivity {
 
                                     String nama = jsonRESULTS.getJSONObject("penduduk").getString("nama_lengkap");
 
+                                    String email = jsonRESULTS.getJSONObject("users").getString("email");
+
                                     // Jika login berhasil maka data nama yang ada di response API
                                     // akan diparsing ke activity selanjutnya.
                                     Toast.makeText(mContext, "Selamat Datang "+nama, Toast.LENGTH_SHORT).show();
 
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, nama);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, email);
+
                                     // Shared Pref ini berfungsi untuk menjadi trigger session login
                                     sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
                                     startActivity(new Intent(mContext, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));

@@ -27,26 +27,36 @@ public class MainActivity extends AppCompatActivity
     private ImageView imgview_barcode;
     private CircleImageView imgview_fotoprofil;
 
-        @BindView(R.id.tvResultNama)
-        TextView tvResultNama;
 
-        @BindView(R.id.tvResultEmail)
-        TextView tvResultEmail;
+    @BindView(R.id.tvResultNama)
+    TextView tvResultNama;
 
-        SharedPrefManager sharedPrefManager;
+    TextView tvResultEmail;
 
-        @Override
-        protected void onCreate (Bundle savedInstanceState){
+    @BindView(R.id.bLogout)
+    TextView bLogout;
+
+    SharedPrefManager sharedPrefManager;
+
+    @Override
+    protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//
+
         ButterKnife.bind(this);
         sharedPrefManager = new SharedPrefManager(this);
 
         tvResultNama.setText(sharedPrefManager.getSPNama());
-        tvResultEmail.setText(sharedPrefManager.getSPEmail());
 
 
+        bLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
+                startActivity(new Intent(getApplicationContext(), SigninActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                finish();
+            }
+        });
 
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -65,6 +75,9 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
+
+        tvResultEmail = (TextView) headerView.findViewById(R.id.tvResultEmail);
+        tvResultEmail.setText(sharedPrefManager.getSPEmail());
 
         imgview_barcode = (ImageView) headerView.findViewById(R.id.imgview_barcode);
         imgview_barcode.setOnClickListener(new View.OnClickListener() {
@@ -129,16 +142,20 @@ public class MainActivity extends AppCompatActivity
             showToast("setelan");
         } else if (id == R.id.nav_laporkan) {
             showToast("laporkan masalah");
-        } else if (id == R.id.bLogout) {
-            sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
-            startActivity(new Intent(getApplicationContext(), SigninActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-            finish();
-            showToast("Anda telah Keluar");
+        } else if (id == R.id.nav_keluar) {
+            //showToast("bantuan");
+            nav_keluar();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void nav_keluar() {
+        sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
+        startActivity(new Intent(getApplicationContext(), SigninActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+        finish();
     }
 
     private void showToast(String message){

@@ -20,7 +20,7 @@
             android:title="Laporkan Masalah" />
 
         <item
-            android:id="@+id/bLogout"
+            android:id="@+id/nav_keluar"
             android:icon="@drawable/ic_info"
             android:title="Keluar Aplikasi" />
     </group>
