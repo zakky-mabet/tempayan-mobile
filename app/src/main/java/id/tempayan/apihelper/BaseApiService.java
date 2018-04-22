@@ -10,7 +10,7 @@ public interface BaseApiService {
 
     // Func Get Api
     @FormUrlEncoded
-    @POST("login.php")
+    @POST("auth/login/")
     Call<ResponseBody> loginRequest(@Field("email") String email,
                                     @Field("password") String password);
 
@@ -19,6 +19,4 @@ public interface BaseApiService {
     Call<ResponseBody> registerRequest(@Field("nama") String nama,
                                        @Field("email") String email,
                                        @Field("password") String password );
-
-
 }

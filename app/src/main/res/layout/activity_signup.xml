@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="1dp"
-                android:text="Tempat Pelayanan Surat Perizinan dan Non Perizinan Online \n Kecamatan Koba"
+                android:text="Aplikasi Pelayanan Administrasi Surat Perizinan dan Non Perizinan  \n Kecamatan Koba"
                 android:textAlignment="center"
                 android:textColor="#ffae00"
                 android:textSize="10sp" />
@@ -83,7 +83,7 @@
                     android:background="@drawable/edittextstyle"
                     android:drawableRight="@drawable/ic_account_circle_black_24dp"
                     android:ems="1"
-                    android:hint="Masukan Nomor NIK"
+                    android:hint="Masukan NIK"
                     android:inputType="number"
                     android:textColor="#000"
                     android:textColorHint="#888" />
@@ -140,54 +140,54 @@
                     android:textColor="#000"
                     android:textColorHint="#888" />
 
-                <EditText
-                    android:id="@+id/etTanggalLahir"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/edittextstyle"
-                    android:drawableRight="@drawable/ic_date_range_black_24dp"
-                    android:ems="1"
-                    android:hint="Masukan Tanggal Lahir"
-                    android:inputType="date"
-                    android:textColor="#000"
-                    android:textColorHint="#888"
-                    android:clickable="true"
-                    android:focusable="false"/>
+                <!--<EditText-->
+                    <!--android:id="@+id/etTanggalLahir"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:background="@drawable/edittextstyle"-->
+                    <!--android:drawableRight="@drawable/ic_date_range_black_24dp"-->
+                    <!--android:ems="1"-->
+                    <!--android:hint="Masukan Tanggal Lahir"-->
+                    <!--android:inputType="date"-->
+                    <!--android:textColor="#000"-->
+                    <!--android:textColorHint="#888"-->
+                    <!--android:clickable="true"-->
+                    <!--android:focusable="false"/>-->
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:orientation="horizontal">-->
 
-                        <RadioGroup
-                            android:id="@+id/grJenisKelamin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                        <!--<RadioGroup-->
+                            <!--android:id="@+id/rgJenisKelamin"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="horizontal">-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Jenis Kelamin :" />
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Jenis Kelamin :" />-->
 
-                            <RadioButton
-                                android:id="@+id/rbLakiLaki"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="9dp"
-                                android:text="Laki-laki" />
+                            <!--<RadioButton-->
+                                <!--android:id="@+id/rbLakiLaki"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginRight="9dp"-->
+                                <!--android:text="Laki-laki" />-->
 
-                            <RadioButton
-                                android:id="@+id/rbPerempuan"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Perempuan" />
+                            <!--<RadioButton-->
+                                <!--android:id="@+id/rbPerempuan"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Perempuan" />-->
 
-                        </RadioGroup>
+                        <!--</RadioGroup>-->
 
-                </LinearLayout>
+                <!--</LinearLayout>-->
 
                 <EditText
                     android:id="@+id/etNomorHp"

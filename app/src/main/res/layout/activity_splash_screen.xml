@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="1dp"
-            android:text="Tempat Pelayanan Surat Perizinan dan Non Perizinan Online \n Kecamatan Koba"
+            android:text="Aplikasi Pelayanan Administrasi Surat Perizinan dan Non Perizinan  \n Kecamatan Koba"
             android:textAlignment="center"
             android:textColor="#737373"
             android:textSize="9sp" />
