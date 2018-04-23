@@ -19,6 +19,11 @@ allprojects {
     repositories {
         google()
         jcenter()
+
+        // Maven For Glide load  Image from Url
+        mavenCentral()
+        maven { url 'https://maven.google.com' }
+        // End
     }
 }
 

@@ -111,8 +111,8 @@ public class SigninActivity extends AppCompatActivity {
                                 if (jsonRESULTS.getString("error").equals("false")){
 
                                     String nama = jsonRESULTS.getJSONObject("penduduk").getString("nama_lengkap");
-
                                     String email = jsonRESULTS.getJSONObject("users").getString("email");
+                                    String photo = jsonRESULTS.getJSONObject("users").getString("photo");
 
                                     // Jika login berhasil maka data nama yang ada di response API
                                     // akan diparsing ke activity selanjutnya.
@@ -120,6 +120,7 @@ public class SigninActivity extends AppCompatActivity {
 
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, nama);
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, email);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_PHOTO, photo);
 
                                     // Shared Pref ini berfungsi untuk menjadi trigger session login
                                     sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);

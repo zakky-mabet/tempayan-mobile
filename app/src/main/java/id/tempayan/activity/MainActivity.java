@@ -1,19 +1,29 @@
 package id.tempayan.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.SimpleTarget;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,21 +31,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import id.tempayan.R;
 import id.tempayan.util.SharedPrefManager;
 
+import static id.tempayan.apihelper.UtilsApi.BASE_URL_IMAGE;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ImageView imgview_barcode;
     private CircleImageView imgview_fotoprofil;
+    private DrawerLayout drawerLayout;
 
-
-    @BindView(R.id.tvResultNama)
     TextView tvResultNama;
-
     TextView tvResultEmail;
-
-    @BindView(R.id.bLogout)
-    TextView bLogout;
-
     SharedPrefManager sharedPrefManager;
 
     @Override
@@ -46,29 +52,16 @@ public class MainActivity extends AppCompatActivity
         ButterKnife.bind(this);
         sharedPrefManager = new SharedPrefManager(this);
 
-        tvResultNama.setText(sharedPrefManager.getSPNama());
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-
-        bLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
-                startActivity(new Intent(getApplicationContext(), SigninActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-                finish();
-            }
-        });
-
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-            drawer.setDrawerListener(toggle);
-            toggle.syncState();
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
-            initComponentsNavHeader();
-
+        initComponentsNavHeader();
     }
 
     private void initComponentsNavHeader(){
@@ -79,13 +72,8 @@ public class MainActivity extends AppCompatActivity
         tvResultEmail = (TextView) headerView.findViewById(R.id.tvResultEmail);
         tvResultEmail.setText(sharedPrefManager.getSPEmail());
 
-        imgview_barcode = (ImageView) headerView.findViewById(R.id.imgview_barcode);
-        imgview_barcode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showToast("barcode");
-            }
-        });
+        tvResultNama = (TextView) headerView.findViewById(R.id.tvResultNama);
+        tvResultNama.setText(sharedPrefManager.getSPNama());
 
         imgview_fotoprofil = (CircleImageView) headerView.findViewById(R.id.imgview_fotoprofil);
         imgview_fotoprofil.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +82,10 @@ public class MainActivity extends AppCompatActivity
                 showToast("Foto Profil");
             }
         });
+
+        Glide.with(getApplicationContext())
+                .load(BASE_URL_IMAGE+sharedPrefManager.getSPPhoto())
+                .into((CircleImageView) headerView.findViewById(R.id.imgview_fotoprofil));
 
     }
     @Override
@@ -123,6 +115,8 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if(id == R.id.action_keluar){
+            nav_keluar();
         }
 
         return super.onOptionsItemSelected(item);
@@ -134,15 +128,9 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_undangan) {
+        if (id == R.id.nav_home) {
             showToast("undangan");
-        } else if (id == R.id.nav_saluran) {
-            showToast("saluran");
-        } else if (id == R.id.nav_setelan) {
-            showToast("setelan");
-        } else if (id == R.id.nav_laporkan) {
-            showToast("laporkan masalah");
-        } else if (id == R.id.nav_keluar) {
+        }else if (id == R.id.nav_keluar) {
             //showToast("bantuan");
             nav_keluar();
         }
@@ -153,9 +141,26 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void nav_keluar() {
-        sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
-        startActivity(new Intent(getApplicationContext(), SigninActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage("Do you want to Exit?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
+                startActivity(new Intent(getApplicationContext(), SigninActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //if user select "No", just cancel this dialog and continue with app
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     private void showToast(String message){

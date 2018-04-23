@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:headerLayout="@layout/nav_header_main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/side_nav_bar"
+    android:layout_height="200dp"
+    android:background="@drawable/nav_bg"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -15,30 +13,24 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     tools:ignore="ResourceCycle">
 
-    <ImageView
-        android:paddingTop="16dp"
-        android:id="@+id/imgview_barcode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_barcode_2"
-        android:layout_gravity="right"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imgview_fotoprofil"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/mascot" />
 
     <TextView
-        android:id="@+id/tvResultNama1"
+        android:id="@+id/tvResultNama"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
+        android:text="Nama Lengkap"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/tvResultEmail"
+        android:text="Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

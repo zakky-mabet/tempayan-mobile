@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="none">
         <item
-            android:id="@+id/nav_undangan"
-            android:icon="@drawable/ic_person_add"
-            android:title="Undangan" />
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="Beranda" />
         <item
-            android:id="@+id/nav_saluran"
-            android:icon="@drawable/ic_device_hub"
-            android:title="Saluran" />
+            android:id="@+id/nav_perizinan"
+            android:icon="@drawable/surat_perizinan"
+            android:title="Surat Perizinan" />
         <item
-            android:id="@+id/nav_setelan"
-            android:icon="@drawable/ic_settings"
-            android:title="Setelan" />
+            android:id="@+id/nav_non_perizinan"
+            android:icon="@drawable/dokumen_perizinanan"
+            android:title="Surat Non Perizinan" />
         <item
-            android:id="@+id/nav_laporkan"
-            android:icon="@drawable/ic_info"
-            android:title="Laporkan Masalah" />
-
+            android:id="@+id/nav_contoh_surat"
+            android:icon="@drawable/surat_view"
+            android:title="Contoh Surat" />
+        <item
+            android:id="@+id/nav_syarat_surat"
+            android:icon="@drawable/surat_perizinan"
+            android:title="Persyaratan Surat-surat" />
+        <item
+            android:id="@+id/nav_profil"
+            android:icon="@drawable/icon_account"
+            android:title="Profil" />
+        <item
+            android:id="@+id/nav_pengaturan"
+            android:icon="@drawable/pengaturan"
+            android:title="Pengaturan" />
         <item
             android:id="@+id/nav_keluar"
-            android:icon="@drawable/ic_info"
+            android:icon="@drawable/signout"
             android:title="Keluar Aplikasi" />
     </group>
+
 </menu>

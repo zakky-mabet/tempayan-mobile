@@ -1,5 +1,6 @@
 package id.tempayan.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -9,12 +10,14 @@ public class SharedPrefManager {
 
     public static final String SP_NAMA = "spNama";
     public static final String SP_EMAIL = "spEmail";
+    public static final String SP_PHOTO = "spPhoto";
 
     public static final String SP_SUDAH_LOGIN = "spSudahLogin";
 
-    SharedPreferences sp;
-    SharedPreferences.Editor spEditor;
+    private SharedPreferences sp;
+    private SharedPreferences.Editor spEditor;
 
+    @SuppressLint("CommitPrefEdits")
     public SharedPrefManager (Context context){
         sp = context.getSharedPreferences(SP_TEMPAYAN_MOBILE, Context.MODE_PRIVATE);
         spEditor = sp.edit();
@@ -41,6 +44,10 @@ public class SharedPrefManager {
 
     public String getSPEmail(){
         return sp.getString(SP_EMAIL, "");
+    }
+
+    public String getSPPhoto(){
+        return sp.getString(SP_PHOTO, "");
     }
 
     public Boolean getSPSudahLogin(){
