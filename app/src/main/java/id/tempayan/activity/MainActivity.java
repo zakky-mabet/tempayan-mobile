@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,14 +32,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import id.tempayan.R;
 import id.tempayan.util.SharedPrefManager;
 
+import static id.tempayan.R.string.navigation_drawer_close;
 import static id.tempayan.apihelper.UtilsApi.BASE_URL_IMAGE;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ImageView imgview_barcode;
     private CircleImageView imgview_fotoprofil;
-    private DrawerLayout drawerLayout;
 
     TextView tvResultNama;
     TextView tvResultEmail;
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                    this, drawer, toolbar, R.string.navigation_drawer_open, navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 

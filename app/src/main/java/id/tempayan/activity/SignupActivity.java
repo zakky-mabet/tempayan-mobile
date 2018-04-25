@@ -6,22 +6,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.tempayan.R;
 import id.tempayan.apihelper.BaseApiService;
 import id.tempayan.apihelper.UtilsApi;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -39,20 +44,11 @@ public class SignupActivity extends AppCompatActivity {
     TextView etKonfirmasiSandi;
     @BindView(R.id.etNomorHp)
     EditText etNomorHp;
-//    @BindView(R.id.etTanggalLahir)
-//    EditText etTanggalLahir;
-//    @BindView(R.id.rgJenisKelamin)
-//    RadioGroup rgJenisKelamin;
-//    @BindView(R.id.rbLakiLaki)
-//    RadioButton rbLakiLaki;
-//    @BindView(R.id.rbPerempuan)
-//    RadioButton rbPerempuan;
     @BindView(R.id.tvSignin)
     TextView tvSignin;
     @BindView(R.id.bSignup)
     Button bSignup;
 
-    DatePickerDialog datePickerDialog;
     ProgressDialog loading;
     Context mContext;
     BaseApiService mApiService;
@@ -72,25 +68,6 @@ public class SignupActivity extends AppCompatActivity {
                 finish();
             }
         }); // end tvSignin setOnClickListener
-
-//        etTanggalLahir.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // calender class's instance and get current date , month and year from calender
-//                final Calendar c = Calendar.getInstance();
-//                int mYear = c.get(Calendar.YEAR); // current year
-//                int mMonth = c.get(Calendar.MONTH); // current month
-//                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
-//                // date picker dialog
-//                datePickerDialog = new DatePickerDialog(SignupActivity.this, new DatePickerDialog.OnDateSetListener() {
-//                    @Override
-//                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//                            etTanggalLahir.setText(year+"-"+monthOfYear+"-"+dayOfMonth);
-//                            }
-//                        }, mYear, mMonth, mDay);
-//                datePickerDialog.show();
-//            }
-//        });
 
         mContext = this;
         mApiService = UtilsApi.getAPIService();
@@ -148,7 +125,43 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void requestRegister() {
-// test
+        mApiService.registerRequest(etNik.getText().toString(),
+                etNamaLengkap.getText().toString(),
+                etEmail.getText().toString(),
+                etSandi.getText().toString(),
+                etNomorHp.getText().toString())
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()){
+                            Log.i("debug", "onResponse: BERHASIL");
+                            loading.dismiss();
+                            try {
+                                JSONObject jsonRESULTS = new JSONObject(response.body().string());
+                                if (jsonRESULTS.getString("error").equals("false")){
+                                    Toast.makeText(mContext, "BERHASIL REGISTRASI", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(mContext, SigninActivity.class));
+                                } else {
+                                    String error_message = jsonRESULTS.getString("error_msg");
+                                    Toast.makeText(mContext, error_message, Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Log.i("debug", "onResponse: GA BERHASIL");
+                            loading.dismiss();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.e("debug", "onFailure: ERROR > " + t.getMessage());
+                        Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     public static boolean isValidEmail(String email) {
