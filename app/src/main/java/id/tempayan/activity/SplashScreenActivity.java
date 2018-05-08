@@ -29,7 +29,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         Thread thread = new Thread(){
             public void run(){
                 try{
-                    sleep(2000); // set Waktu Pending selama 1 detik
+                    sleep(1000); // set Waktu Pending selama 1 detik
                 }catch(InterruptedException ex){
                     ex.printStackTrace();
                 }finally {

@@ -26,6 +26,10 @@
             android:icon="@drawable/icon_account"
             android:title="Profil" />
         <item
+            android:id="@+id/nav_riwayat"
+            android:icon="@drawable/history"
+            android:title="Riwayat" />
+        <item
             android:id="@+id/nav_pengaturan"
             android:icon="@drawable/pengaturan"
             android:title="Pengaturan" />

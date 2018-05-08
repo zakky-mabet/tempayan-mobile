@@ -54,4 +54,6 @@ public class SharedPrefManager {
         return sp.getBoolean(SP_SUDAH_LOGIN, false);
     }
 
+
+
 }

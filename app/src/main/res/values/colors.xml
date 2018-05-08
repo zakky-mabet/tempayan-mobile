@@ -6,7 +6,6 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="abuabu">#151515</color>
-
     <color name="backgroundcolor">#fcfcfc</color>
     <color name="lightgray">#ededed</color>
     <color name="deeppurple">#7c4dff</color>
@@ -15,6 +14,7 @@
     <color name="darkblue">#23283a</color>
     <color name="testcolorblue">#152b38</color>
     <color name="pink">#fe104d</color>
-
     <color name="black_overlay">#66000000</color>
+    <color name="gray_dark">#cfcfcf</color>
+    <color name="gray_light">#dfdfdf</color>
 </resources>
