@@ -11,6 +11,7 @@ public class SharedPrefManager {
     public static final String SP_NAMA = "spNama";
     public static final String SP_EMAIL = "spEmail";
     public static final String SP_PHOTO = "spPhoto";
+    public static final String SP_ID_USER = "spIdUser";
 
     public static final String SP_SUDAH_LOGIN = "spSudahLogin";
 
@@ -48,6 +49,10 @@ public class SharedPrefManager {
 
     public String getSPPhoto(){
         return sp.getString(SP_PHOTO, "");
+    }
+
+    public int getSPIdUser(){
+        return sp.getInt(SP_ID_USER, 0);
     }
 
     public Boolean getSPSudahLogin(){

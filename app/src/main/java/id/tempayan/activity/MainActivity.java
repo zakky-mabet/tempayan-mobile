@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_profil) {
             startActivity(new Intent(getApplicationContext(), ProfilActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

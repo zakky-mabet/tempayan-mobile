@@ -20,6 +20,8 @@ allprojects {
         google()
         jcenter()
 
+        maven { url 'https://jitpack.io' }
+
         // Maven For Glide load  Image from Url
         mavenCentral()
         maven { url 'https://maven.google.com' }
