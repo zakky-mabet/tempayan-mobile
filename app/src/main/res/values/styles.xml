@@ -17,4 +17,19 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Button1Style" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#FFCCBC</item>
+        <item name="colorButtonNormal">#e88928</item>
+    </style>
+
+    <style name="Button2Style" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#E0F2F1</item>
+        <item name="colorButtonNormal">#009688</item>
+    </style>
+
+    <style name="Button3Style" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">#E91E63</item>
+        <item name="colorControlHighlight">#FCE4EC</item>
+    </style>
+
 </resources>

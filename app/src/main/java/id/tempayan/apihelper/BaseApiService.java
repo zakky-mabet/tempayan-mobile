@@ -28,6 +28,8 @@ public interface BaseApiService {
                                        @Field("handphone") String handphone );
 
     @FormUrlEncoded
-    @POST("auth/getbyiduser/")
-    Call<ResponseBody> getbyiduser(@Field("email") String email);
+    @POST("auth/ubahpassword/")
+    Call<ResponseBody> ubahpasswordrequest(@Field("password_sekarang") String password_sekarang,
+                                           @Field("password_baru") String password_baru,
+                                           @Field("id") String id);
 }

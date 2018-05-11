@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.UbahActivity">
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleContentDescription="Password Sekarang"
+            app:passwordToggleDrawable="@drawable/ic_visibility_off_black_24dp"
+            app:passwordToggleEnabled="false"
+            app:passwordToggleTint="@color/colorAccent">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etpasswordsekarang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password Sekarang"
+                android:inputType="textPassword"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleContentDescription="Password Baru"
+            app:passwordToggleDrawable="@drawable/ic_visibility_off_black_24dp"
+            app:passwordToggleEnabled="false"
+            app:passwordToggleTint="@color/colorAccent">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etpasswordbaru"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password Baru"
+                android:inputType="textPassword"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleContentDescription="Konfirmasi Password Baru"
+            app:passwordToggleDrawable="@drawable/ic_visibility_off_black_24dp"
+            app:passwordToggleEnabled="false"
+            app:passwordToggleTint="@color/colorAccent">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etkonfirmasipassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Konfirmasi Password Baru "
+                android:inputType="textPassword"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:text="Ubah Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bubahpassword"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:theme="@style/Button1Style"
+            android:textColor="#ffffff"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

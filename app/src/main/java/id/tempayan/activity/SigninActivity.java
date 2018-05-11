@@ -3,6 +3,7 @@ package id.tempayan.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -113,17 +114,60 @@ public class SigninActivity extends AppCompatActivity {
                                     String nama = jsonRESULTS.getJSONObject("penduduk").getString("nama_lengkap");
                                     String email = jsonRESULTS.getJSONObject("users").getString("email");
                                     String photo = jsonRESULTS.getJSONObject("users").getString("photo");
+                                    String handphone = jsonRESULTS.getJSONObject("users").getString("handphone");
+                                    String tanggal_daftar = jsonRESULTS.getJSONObject("users").getString("tanggal_daftar");
+                                    String nik = jsonRESULTS.getJSONObject("penduduk").getString("nik");
+                                    String no_kk = jsonRESULTS.getJSONObject("penduduk").getString("no_kk");
+                                    String kd_pos = jsonRESULTS.getJSONObject("penduduk").getString("kd_pos");
+                                    String ttl = jsonRESULTS.getJSONObject("penduduk").getString("ttl");
+                                    String tmp_lahir = jsonRESULTS.getJSONObject("penduduk").getString("tmp_lahir");
+                                    String tgl_lahir = jsonRESULTS.getJSONObject("penduduk").getString("tgl_lahir");
+                                    String jns_kelamin = jsonRESULTS.getJSONObject("penduduk").getString("jns_kelamin");
+                                    String alamat = jsonRESULTS.getJSONObject("penduduk").getString("alamat");
+                                    String rt = jsonRESULTS.getJSONObject("penduduk").getString("rt");
+                                    String rw = jsonRESULTS.getJSONObject("penduduk").getString("rw");
+                                    String rt_rw = jsonRESULTS.getJSONObject("penduduk").getString("rt_rw");
+                                    String desa = jsonRESULTS.getJSONObject("penduduk").getString("desa");
+                                    String kecamatan = jsonRESULTS.getJSONObject("penduduk").getString("kecamatan");
+                                    String agama = jsonRESULTS.getJSONObject("penduduk").getString("agama");
+                                    String pekerjaan = jsonRESULTS.getJSONObject("penduduk").getString("pekerjaan");
+                                    String kewarganegaraan = jsonRESULTS.getJSONObject("penduduk").getString("kewarganegaraan");
+                                    String status_kawin = jsonRESULTS.getJSONObject("penduduk").getString("status_kawin");
+                                    String gol_darah = jsonRESULTS.getJSONObject("penduduk").getString("gol_darah");
+                                    String status_kk = jsonRESULTS.getJSONObject("penduduk").getString("status_kk");
                                     int id_user = jsonRESULTS.getJSONObject("users").getInt("id_user");
-
-                                    // Jika login berhasil maka data nama yang ada di response API
-                                    // akan diparsing ke activity selanjutnya.
-                                    Toast.makeText(mContext, "Selamat Datang "+nama, Toast.LENGTH_SHORT).show();
+                                    String id_userstring = jsonRESULTS.getJSONObject("users").getString("id_user");
 
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, nama);
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, email);
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_PHOTO, photo);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_HANDPHONE, handphone);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_TANGGALDAFTAR, tanggal_daftar);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK, nik);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NOKK, no_kk);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_KDPOS, kd_pos);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_TTL, ttl);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_TMPLAHIR, tmp_lahir);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_TGLLAHIR, tgl_lahir);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_JNSKELAMIN, jns_kelamin);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_ALAMAT, alamat);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_RT, rt);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_RW, rw);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_RTRW, rt_rw);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_DESA, desa);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_KECAMATAN, kecamatan);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_AGAMA, agama);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_PEKERJAAN, pekerjaan);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_KEWARGANEGARAAN, kewarganegaraan);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUSKAWIN, status_kawin);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_GOLDARAH, gol_darah);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUSKK, status_kk);
                                     sharedPrefManager.saveSPInt(SharedPrefManager.SP_ID_USER, id_user);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_USER, id_userstring);
 
+                                    // Jika login berhasil maka data nama yang ada di response API
+                                    // akan diparsing ke activity selanjutnya.
+                                    Toast.makeText(mContext, "Selamat Datang "+nama, Toast.LENGTH_SHORT).show();
                                     // Shared Pref ini berfungsi untuk menjadi trigger session login
                                     sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
                                     startActivity(new Intent(mContext, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
@@ -146,7 +190,7 @@ public class SigninActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Log.e("debug", "onFailure: ERROR > " + t.toString());
+                       // Log.e("debug", "onFailure: ERROR > " + t.toString());
                         loading.dismiss();
                     }
                 });

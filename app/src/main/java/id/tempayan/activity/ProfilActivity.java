@@ -40,17 +40,16 @@ public class ProfilActivity extends AppCompatActivity {
     TextView tvResultNama;
     TextView tvResultEmail;
     SharedPrefManager sharedPrefManager;
-
     @BindView(R.id.ivAvatar)
     ImageView ivAvatar;
     @BindView(R.id.btnChangePhoto)
     ImageView btnChangePhoto;
-
     @BindView(R.id.akun)
     LinearLayout akun;
-
     @BindView(R.id.identitas)
     LinearLayout identitas;
+    @BindView(R.id.ubahpassword)
+    LinearLayout ubahpassword;
 
     Unbinder unbinder;
 
@@ -66,17 +65,14 @@ public class ProfilActivity extends AppCompatActivity {
         menu.setDisplayHomeAsUpEnabled(true);
 
         sharedPrefManager = new SharedPrefManager(this);
-
         tvResultEmail = (TextView) findViewById(R.id.tvResultEmail);
         tvResultEmail.setText(sharedPrefManager.getSPEmail());
-
         tvResultNama = (TextView) findViewById(R.id.tvResultNama);
         tvResultNama.setText(sharedPrefManager.getSPNama());
 
         Glide.with(getApplicationContext())
                 .load(BASE_URL_IMAGE+sharedPrefManager.getSPPhoto())
                 .into((CircleImageView) findViewById(R.id.ivAvatar));
-
 
         ButterKnife.bind(this);
         unbinder = ButterKnife.bind(this);
@@ -95,16 +91,20 @@ public class ProfilActivity extends AppCompatActivity {
         akun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startActivity(new Intent(getApplicationContext(), AkunActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             }
         });
-
         identitas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startActivity(new Intent(getApplicationContext(), IdentitasActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+        });
+        ubahpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getApplicationContext(), UbahActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             }
         });
     }

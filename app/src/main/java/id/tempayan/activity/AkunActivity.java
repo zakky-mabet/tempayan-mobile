@@ -50,8 +50,6 @@ public class AkunActivity extends AppCompatActivity {
     TextView tvHandphone;
     @BindView(R.id.tvTanggal_daftar)
     TextView tvTanggal_daftar;
-    @BindView(R.id.ivphoto)
-    ImageView ivphoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,54 +75,62 @@ public class AkunActivity extends AppCompatActivity {
 
         Log.i("TAG", sharedPrefManager.getSPEmail());
         mApiService = UtilsApi.getAPIService(); // meng-init utilapis pada paket apihelper
-        m_getbyiduser();
+        tvEmail.setText(sharedPrefManager.getSPEmail());
+        tvHandphone.setText(sharedPrefManager.getSpHandphone());
+        tvTanggal_daftar.setText(sharedPrefManager.getSpTanggaldaftar());
+
+        Glide.with(getApplicationContext())
+                .load(BASE_URL_IMAGE+sharedPrefManager.getSPPhoto())
+                .into((ImageView) findViewById(R.id.ivphoto));
+
+        //m_getbyiduser();
 
     }
 
-    private void m_getbyiduser(){
-        mApiService.getbyiduser(sharedPrefManager.getSPEmail())
-                .enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()){
-                            try {
-                                JSONObject jsonRESULTS = new JSONObject(response.body().string());
-                                if (jsonRESULTS.getString("error").equals("false")){
-
-
-                                    String email = jsonRESULTS.getJSONObject("users").getString("email");
-                                    String photo = jsonRESULTS.getJSONObject("users").getString("photo");
-                                    String handphone = jsonRESULTS.getJSONObject("users").getString("handphone");
-                                    String tanggal_daftar = jsonRESULTS.getJSONObject("users").getString("tanggal_daftar");
-
-                                    tvEmail.setText(email);
-                                    tvHandphone.setText(handphone);
-                                    tvTanggal_daftar.setText(tanggal_daftar);
-
-                                    Glide.with(getApplicationContext())
-                                            .load(BASE_URL_IMAGE+photo)
-                                            .into((ImageView) findViewById(R.id.ivphoto));
-
-
-                                } else {
-
-                                    String error_message = jsonRESULTS.getString("error_msg");
-                                    Toast.makeText(mContext, error_message, Toast.LENGTH_SHORT).show();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }  catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        } else {
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Log.e("debug", "onFailure: ERROR > " + t.toString());
-                    }
-                });
-    }
+//    private void m_getbyiduser(){
+//        mApiService.getbyiduser(sharedPrefManager.getSPEmail())
+//                .enqueue(new Callback<ResponseBody>() {
+//                    @Override
+//                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                        if (response.isSuccessful()){
+//                            try {
+//                                JSONObject jsonRESULTS = new JSONObject(response.body().string());
+//                                if (jsonRESULTS.getString("error").equals("false")){
+//
+//
+//                                    String email = jsonRESULTS.getJSONObject("users").getString("email");
+//                                    String photo = jsonRESULTS.getJSONObject("users").getString("photo");
+//                                    String handphone = jsonRESULTS.getJSONObject("users").getString("handphone");
+//                                    String tanggal_daftar = jsonRESULTS.getJSONObject("users").getString("tanggal_daftar");
+//
+//                                    tvEmail.setText(email);
+//                                    tvHandphone.setText(handphone);
+//                                    tvTanggal_daftar.setText(tanggal_daftar);
+//
+//                                    Glide.with(getApplicationContext())
+//                                            .load(BASE_URL_IMAGE+photo)
+//                                            .into((ImageView) findViewById(R.id.ivphoto));
+//
+//
+//                                } else {
+//
+//                                    String error_message = jsonRESULTS.getString("error_msg");
+//                                    Toast.makeText(mContext, error_message, Toast.LENGTH_SHORT).show();
+//                                }
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }  catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//                        } else {
+//
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                        Log.e("debug", "onFailure: ERROR > " + t.toString());
+//                    }
+//                });
+//    }
 }
