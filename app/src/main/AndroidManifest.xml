@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.SplashScreenActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,9 +48,17 @@
             android:name=".activity.IdentitasActivity"
             android:label="Identitas Kependudukan"
             android:parentActivityName=".activity.ProfilActivity" />
-        <activity android:name=".activity.UbahActivity"
+        <activity
+            android:name=".activity.UbahActivity"
             android:label="Ubah Password"
             android:parentActivityName=".activity.ProfilActivity">
+
+        </activity>
+        <activity
+            android:label="Ubah Identitas"
+            android:parentActivityName=".activity.IdentitasActivity"
+            android:name=".activity.EditIdentitasActivity">
+
         </activity>
     </application>
 
