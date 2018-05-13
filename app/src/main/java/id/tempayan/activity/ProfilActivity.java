@@ -63,6 +63,7 @@ public class ProfilActivity extends AppCompatActivity {
         ActionBar menu = getSupportActionBar();
         menu.setDisplayShowHomeEnabled(true);
         menu.setDisplayHomeAsUpEnabled(true);
+        menu.setElevation(0);
 
         sharedPrefManager = new SharedPrefManager(this);
         tvResultEmail = (TextView) findViewById(R.id.tvResultEmail);

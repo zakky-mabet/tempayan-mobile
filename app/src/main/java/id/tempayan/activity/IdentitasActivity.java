@@ -72,6 +72,7 @@ public class IdentitasActivity extends AppCompatActivity {
         ActionBar menu = getSupportActionBar();
         menu.setDisplayShowHomeEnabled(true);
         menu.setDisplayHomeAsUpEnabled(true);
+        menu.setElevation(0);
 
         ButterKnife.bind(this);
         sharedPrefManager = new SharedPrefManager(this);

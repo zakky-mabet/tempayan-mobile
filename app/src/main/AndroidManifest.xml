@@ -58,7 +58,6 @@
             android:label="Ubah Identitas"
             android:parentActivityName=".activity.IdentitasActivity"
             android:name=".activity.EditIdentitasActivity">
-
         </activity>
     </application>
 
