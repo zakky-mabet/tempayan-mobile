@@ -1,15 +1,13 @@
 package id.tempayan.apihelper;
 
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
+import id.tempayan.model.ResponseAgama;
+import id.tempayan.model.ResponseGolonganDarah;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 
 public interface BaseApiService {
 
@@ -32,4 +30,10 @@ public interface BaseApiService {
     Call<ResponseBody> ubahpasswordrequest(@Field("password_sekarang") String password_sekarang,
                                            @Field("password_baru") String password_baru,
                                            @Field("id") String id);
+
+    @GET("master_data/golongan_darah")
+    Call<ResponseGolonganDarah> getSemuaGolonganDarah();
+
+    @GET("master_data/agama")
+    Call<ResponseAgama> getSemuaAgama();
 }
