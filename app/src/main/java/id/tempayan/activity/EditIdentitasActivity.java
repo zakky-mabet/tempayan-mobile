@@ -28,9 +28,11 @@ import id.tempayan.R;
 import id.tempayan.apihelper.BaseApiService;
 import id.tempayan.apihelper.UtilsApi;
 import id.tempayan.model.ResponseAgama;
+import id.tempayan.model.ResponseStatusKawin;
 import id.tempayan.model.SemuaAgamaItem;
 import id.tempayan.model.ResponseGolonganDarah;
 import id.tempayan.model.SemuaGolonganDarahItem;
+import id.tempayan.model.SemuaStatusKawinItem;
 import id.tempayan.util.SharedPrefManager;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,7 +41,7 @@ import retrofit2.Response;
 public class EditIdentitasActivity extends AppCompatActivity {
 
 
-    TextInputEditText etnik,etnokk,etnamalengkap,ettempatlahir,ettanggallahir, etalamat,etrt,etrw,etdesa,etkecamatan,etkodepos,etpekerjaan,etstatuskawin,etstatuskeluarga;
+    TextInputEditText etnik,etnokk,etnamalengkap,ettempatlahir,ettanggallahir, etalamat,etrt,etrw,etdesa,etkecamatan,etkodepos,etpekerjaan,etstatuskeluarga;
     RadioGroup rgjeniskelamin, rgkewarganegaraan;
     RadioButton rblakilaki, rbperempuan, rbwni, rbwna;
 
@@ -53,6 +55,9 @@ public class EditIdentitasActivity extends AppCompatActivity {
 
     @BindView(R.id.spinnerAgama)
     Spinner spinnerAgama;
+
+    @BindView(R.id.spinnerStatusKawin)
+    Spinner spinnerStatusKawin;
 
     Calendar myCalendar = Calendar.getInstance();
     String dateFormat = "yyyy-MM-dd";
@@ -100,15 +105,13 @@ public class EditIdentitasActivity extends AppCompatActivity {
 
         initSpinerGolDar();
 
-        initSpinerAgama();
-
         spinnerGolDarah.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedName = parent.getItemAtPosition(position).toString();
                 spinnerGolDarah.setSelection(((ArrayAdapter<String>)spinnerGolDarah.getAdapter()).getPosition(selectedName));
-//                requestDetailDosen(selectedName);
-                Toast.makeText(mContext, "Kamu memilih gol darah " + selectedName, Toast.LENGTH_SHORT).show();
+                //requestDetailDosen(selectedName);
+                //Toast.makeText(mContext, "Kamu memilih gol darah " + selectedName, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -117,13 +120,32 @@ public class EditIdentitasActivity extends AppCompatActivity {
             }
         });
 
+        initSpinerAgama();
+
         spinnerAgama.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedName = parent.getItemAtPosition(position).toString();
                 spinnerAgama.setSelection(((ArrayAdapter<String>)spinnerAgama.getAdapter()).getPosition(selectedName));
-//                requestDetailDosen(selectedName);
-                Toast.makeText(mContext, "Kamu memilih agama " + selectedName, Toast.LENGTH_SHORT).show();
+                //requestDetailDosen(selectedName);
+                //Toast.makeText(mContext, "Kamu memilih agama " + selectedName, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        initSpinerStatusKawin();
+
+        spinnerStatusKawin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedName = parent.getItemAtPosition(position).toString();
+                spinnerStatusKawin.setSelection(((ArrayAdapter<String>)spinnerStatusKawin.getAdapter()).getPosition(selectedName));
+                //requestDetailDosen(selectedName);
+                //Toast.makeText(mContext, "Kamu memilih agama " + selectedName, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -133,6 +155,39 @@ public class EditIdentitasActivity extends AppCompatActivity {
         });
 
         set_value();
+    }
+
+    private void initSpinerStatusKawin() {
+        mApiService.getSemuaStatusKawin().enqueue(new Callback<ResponseStatusKawin>() {
+            @Override
+            public void onResponse(Call<ResponseStatusKawin> call, Response<ResponseStatusKawin> response) {
+                if (response.isSuccessful()) {
+                    List<SemuaStatusKawinItem> SemuaStatusKawinItems = response.body().getSemuastatuskawin();
+                    List<String> listSpinner = new ArrayList<String>();
+                    for (int i = 0; i < SemuaStatusKawinItems.size(); i++){
+                        listSpinner.add(SemuaStatusKawinItems.get(i).getNama());
+                    }
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, listSpinner);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerStatusKawin.setAdapter(adapter);
+
+                    String set_default = sharedPrefManager.getSpStatuskawin(); //the value you want the position for
+                    ArrayAdapter myAdap = (ArrayAdapter) spinnerStatusKawin.getAdapter(); //cast to an ArrayAdapter
+                    int spinnerPosition = myAdap.getPosition(set_default);
+                    spinnerStatusKawin.setSelection(spinnerPosition);
+
+                } else {
+                    Toast.makeText(mContext, "Gagal mengambil data agama", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseStatusKawin> call, Throwable t) {
+                //loading.dismiss();
+                Toast.makeText(mContext, "Koneksi internet bermasalah", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initSpinerAgama() {
@@ -259,10 +314,6 @@ public class EditIdentitasActivity extends AppCompatActivity {
             rbwna = (RadioButton) findViewById(R.id.rbwna);
             rbwna.setChecked(true);
         }
-
-        etstatuskawin = (TextInputEditText) findViewById(R.id.etstatuskawin);
-        etstatuskawin.setText(sharedPrefManager.getSpStatuskawin());
-
 
         etstatuskeluarga = (TextInputEditText) findViewById(R.id.etstatuskeluarga);
         etstatuskeluarga.setText(sharedPrefManager.getSpStatuskk());

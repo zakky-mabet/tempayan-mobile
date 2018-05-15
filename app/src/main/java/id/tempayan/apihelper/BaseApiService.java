@@ -2,6 +2,7 @@ package id.tempayan.apihelper;
 
 import id.tempayan.model.ResponseAgama;
 import id.tempayan.model.ResponseGolonganDarah;
+import id.tempayan.model.ResponseStatusKawin;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -31,9 +32,12 @@ public interface BaseApiService {
                                            @Field("password_baru") String password_baru,
                                            @Field("id") String id);
 
-    @GET("master_data/golongan_darah")
+    @GET("master_data/golongan_darah/")
     Call<ResponseGolonganDarah> getSemuaGolonganDarah();
 
-    @GET("master_data/agama")
+    @GET("master_data/agama/")
     Call<ResponseAgama> getSemuaAgama();
+
+    @GET("master_data/statuskawin/")
+    Call<ResponseStatusKawin> getSemuaStatusKawin();
 }
