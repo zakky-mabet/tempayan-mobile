@@ -52,12 +52,15 @@
             android:name=".activity.UbahActivity"
             android:label="Ubah Password"
             android:parentActivityName=".activity.ProfilActivity">
-
         </activity>
         <activity
+            android:name=".activity.EditIdentitasActivity"
             android:label="Ubah Identitas"
-            android:parentActivityName=".activity.IdentitasActivity"
-            android:name=".activity.EditIdentitasActivity">
+            android:parentActivityName=".activity.IdentitasActivity">
+        </activity>
+        <activity
+            android:label="Surat Keterangan Kelakuan Baik"
+            android:name=".activity.surat.SkkbActivity">
         </activity>
     </application>
 

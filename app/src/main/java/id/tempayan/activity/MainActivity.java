@@ -14,14 +14,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import id.tempayan.R;
 
+import id.tempayan.activity.surat.SkkbActivity;
 import id.tempayan.util.SharedPrefManager;
 
 import static id.tempayan.R.string.navigation_drawer_close;
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity
 
     private CircleImageView imgview_fotoprofil;
 
+    @BindView(R.id.skkb)
+    LinearLayout skkb;
 
     TextView tvResultNama;
     TextView tvResultEmail;
@@ -55,6 +61,19 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         initComponentsNavHeader();
+
+        initsurat();
+    }
+
+    private void initsurat() {
+
+        skkb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(), SkkbActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+        });
     }
 
     private void initComponentsNavHeader(){
