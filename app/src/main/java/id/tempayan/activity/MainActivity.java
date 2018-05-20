@@ -141,7 +141,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            showToast("undangan");
+            Intent i = new Intent(getApplication(),MainActivity.class);
+            startActivity(i);
         }else if (id == R.id.nav_keluar) {
             //showToast("bantuan");
             nav_keluar();

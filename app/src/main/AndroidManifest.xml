@@ -59,8 +59,8 @@
             android:parentActivityName=".activity.IdentitasActivity">
         </activity>
         <activity
-            android:label="Surat Keterangan Kelakuan Baik"
-            android:name=".activity.surat.SkkbActivity">
+            android:name=".activity.surat.SkkbActivity"
+            android:parentActivityName=".activity.MainActivity">
         </activity>
     </application>
 

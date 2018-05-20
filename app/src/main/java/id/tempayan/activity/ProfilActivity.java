@@ -53,7 +53,7 @@ public class ProfilActivity extends AppCompatActivity {
 
     Unbinder unbinder;
 
-    private static final int REQUEST_CHOOSE_IMAGE = 3;
+    private static final int REQUEST_CHOOSE_IMAGE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

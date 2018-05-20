@@ -90,10 +90,7 @@ public class EditIdentitasActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
 
         ettanggallahir = (TextInputEditText) findViewById(R.id.ettanggallahir);
-        // init - set date to current date
         ettanggallahir.setText(sharedPrefManager.getSpTgllahir());
-
-        // set calendar date and update editDate
         date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,

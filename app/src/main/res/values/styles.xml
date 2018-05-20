@@ -32,4 +32,9 @@
         <item name="colorControlHighlight">#FCE4EC</item>
     </style>
 
+    <style name="Button4Style" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="colorControlHighlight">#fcf4e4</item>
+    </style>
+
 </resources>
