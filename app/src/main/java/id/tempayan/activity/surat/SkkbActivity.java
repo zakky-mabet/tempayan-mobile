@@ -1,12 +1,18 @@
 package id.tempayan.activity.surat;
 
+import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.ActionBar;
@@ -19,10 +25,15 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -34,12 +45,21 @@ import id.tempayan.R;
 import id.tempayan.apihelper.BaseApiService;
 import id.tempayan.apihelper.UtilsApi;
 import id.tempayan.util.SharedPrefManager;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static id.tempayan.apihelper.UtilsApi.BASE_URL_IMAGE;
 
 public class SkkbActivity extends AppCompatActivity {
 
-    private static final String TAG = "MyActivity";
+    private static final String TAG = "SKKB ACTIVIRY";
+
+    private static final String tag = "SKKB ACTIVIRY SMALL";
 
     private static final int PICKFILE_RESULT_CODE = 1;
 
@@ -94,7 +114,6 @@ public class SkkbActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -106,7 +125,6 @@ public class SkkbActivity extends AppCompatActivity {
         ettanggalsurat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 new DatePickerDialog(mContext, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -127,7 +145,6 @@ public class SkkbActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
-                // TODO Auto-generated method stub
                 String[] ACCEPT_MIME_TYPES = {"application/pdf","image/*"};
                 Intent intent = new Intent();
                 intent.setType("image/*,application/pdf");
@@ -144,7 +161,6 @@ public class SkkbActivity extends AppCompatActivity {
         kkpemohon.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View arg0) {
-                // TODO Auto-generated method stub
                 String[] ACCEPT_MIME_TYPES = {"application/pdf","image/*"};
                 Intent intent = new Intent();
                 intent.setType("image/*,application/pdf");
@@ -161,7 +177,7 @@ public class SkkbActivity extends AppCompatActivity {
         suratpengantarpemohon.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View arg0) {
-                // TODO Auto-generated method stub
+
                 String[] ACCEPT_MIME_TYPES = {"application/pdf","image/*"};
                 Intent intent = new Intent();
                 intent.setType("image/*,application/pdf");
@@ -174,7 +190,7 @@ public class SkkbActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
+
 
         Log.i(TAG, "onActivityResult: "+ requestCode);
 
@@ -277,11 +293,17 @@ public class SkkbActivity extends AppCompatActivity {
                     String FilePath = data.getData().getPath();
                     TextView suratpengantarpemohonsubtitle = (TextView)findViewById(R.id.suratpengantarpemohonsubtitle);
 
+                    TextView tvFile = (TextView)findViewById(R.id.tvFile);
+
                     // Get the Uri of the selected file
                     Uri uri = data.getData();
+
                     String uriString = uri.toString();
+
                     File myFile = new File(uriString);
-                    String path = myFile.getAbsolutePath();
+
+                    final String path = myFile.getAbsolutePath();
+
                     String displayName = null;
 
                     if (uriString.startsWith("content://")) {
@@ -290,12 +312,27 @@ public class SkkbActivity extends AppCompatActivity {
                             cursor = getApplication().getContentResolver().query(uri, null, null, null, null);
                             if (cursor != null && cursor.moveToFirst()) {
                                 displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                                tvFile.setVisibility ( View.VISIBLE );
+                                tvFile.setText ( displayName );
+
+                                final String finalDisplayName = displayName;
+                                tvFile.setOnClickListener ( new View.OnClickListener () {
+                                    @Override
+                                    public void onClick(View v) {
+                                        File dir = Environment.getExternalStorageDirectory();
+                                        File yourFile = new File(dir, path+ finalDisplayName );
+
+                                        Toast.makeText ( getApplication(),"content://"+yourFile,Toast.LENGTH_SHORT ).show ();
+                                    }
+                                } );
+                                Toast.makeText ( getApplication(),displayName,Toast.LENGTH_LONG ).show ();
                             }
                         } finally {
                             cursor.close();
                         }
                     } else if (uriString.startsWith("file://")) {
                         displayName = myFile.getName();
+                         Toast.makeText ( getApplication (),"file://"+displayName,Toast.LENGTH_LONG ).show ();
                     }
 
                     String extension = displayName.substring(displayName.lastIndexOf(".") + 1);
@@ -315,15 +352,73 @@ public class SkkbActivity extends AppCompatActivity {
                                 .into((CircleImageView) findViewById(R.id.suratpengantarpemohonavatar));
 
                     }
-                    Log.i(TAG, "file : "+ extension);
+
+//                    String selectedImagePath = null;
+//                    Uri selectedImageUri = data.getData();
+//                    Cursor cursor = getApplication().getContentResolver().query(
+//                            selectedImageUri, null, null, null, null);
+//                    if (cursor == null) {
+//                        selectedImagePath = selectedImageUri.getPath();
+//                    } else {
+//                        cursor.moveToFirst();
+//                        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+//                        selectedImagePath = cursor.getString(idx);
+//                    }
+//
+//                    File file = new File(selectedImagePath);
+
+//                    Uri selectedUri_PDF = data.getData();
+//                    String SelectedPDF = getPDFPath(selectedUri_PDF);
+//
+//
+
+
+                    File dir = Environment.getExternalStorageDirectory();
+                    File yourFile = new File("content://"+dir, path+ displayName );
+
+                    String files = dir+path+displayName ;
+
+                    Log.i(TAG, "uri start : "+ yourFile);
+
+                    // create RequestBody instance from
+                    // file
+                    RequestBody requestFile = RequestBody.create(MediaType.parse("image/*,application/pdf"), files);
+                    MultipartBody.Part avatar =  MultipartBody.Part.createFormData("avatar", "P_20180518_035500.jpg", requestFile);
+                    RequestBody id = RequestBody.create(MediaType.parse("text/plain"), sharedPrefManager.getSPIdUserSting());
+                    mApiService.Skkb(avatar, id)
+                            .enqueue(new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    if (response.isSuccessful()){
+                                        try {
+                                            JSONObject jsonRESULTS = new JSONObject(response.body().string());
+                                            if (jsonRESULTS.getString("error").equals("false")){
+
+                                                Toast.makeText(mContext, "Berhasil upload ", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                // Jika login gagal
+                                                String error_message = jsonRESULTS.getString("error_msg");
+                                                Toast.makeText(mContext, error_message, Toast.LENGTH_SHORT).show();
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }  catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    } else {
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                    // Log.e("debug", "onFailure: ERROR > " + t.toString());
+                                }
+                            });
+
 
                 }
             }
-
-
     }
-
-
 
     private void initSetPemohon() {
         Glide.with(getApplicationContext())
