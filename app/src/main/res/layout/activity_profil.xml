@@ -28,8 +28,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivAvatar"
-                android:layout_width="118dp"
-                android:layout_height="136dp"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
                 android:padding="5dp"
                 android:src="@drawable/nophoto" />
 

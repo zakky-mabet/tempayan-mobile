@@ -5,7 +5,6 @@ import id.tempayan.model.ResponseGolonganDarah;
 import id.tempayan.model.ResponseStatusKawin;
 import id.tempayan.model.ResponseStatusKeluarga;
 import okhttp3.MultipartBody;
-import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -15,6 +14,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface BaseApiService {
 
@@ -73,14 +73,29 @@ public interface BaseApiService {
                                             @Field("statuskeluarga") String statuskeluarga
                                            );
 
-    @Multipart
-    @POST("auth/avatar")
-    Call<ResponseBody> uploadPhoto(
-            @Part("description")RequestBody description,
-            @Part MultipartBody.Part photo
-            );
 
     @Multipart
-    @POST("auth/postavatar")
-    Call<ResponseBody> postImage(@Part MultipartBody.Part image, @Part("id") RequestBody id);
+    @POST("auth/avatar/")
+    Call<ResponseBody> postImage(
+                                @Part MultipartBody.Part avatar,
+                                @Part("id") RequestBody  id
+                                );
+
+
+    @Multipart
+    @POST("surat/skkb/")
+    Call<ResponseBody> Skkb(
+            @Part("id") RequestBody  id,
+            @Part("nik") RequestBody nik,
+            @Part("no_surat") RequestBody no_surat,
+            @Part("tanggal_surat") RequestBody tanggal_surat,
+            @Part("keperluan") RequestBody keperluan,
+            @Part MultipartBody.Part ktp_pemohon,
+            @Part MultipartBody.Part kk_pemohon,
+            @Part MultipartBody.Part surat_pengantar
+    );
+
+    @GET("surat/get_byid_surat/{id}")
+    Call<ResponseBody> get_byid_surat(@Path("id")String id);
+    
 }

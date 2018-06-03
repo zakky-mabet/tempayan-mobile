@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
         imgview_fotoprofil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("Foto Profil");
+                startActivity(new Intent(getApplicationContext(), ProfilActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             }
         });
 
@@ -143,12 +143,15 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             Intent i = new Intent(getApplication(),MainActivity.class);
             startActivity(i);
-        }else if (id == R.id.nav_keluar) {
+        } else if (id == R.id.nav_keluar) {
             //showToast("bantuan");
             nav_keluar();
         }
         else if (id == R.id.nav_profil) {
             startActivity(new Intent(getApplicationContext(), ProfilActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
+        else if (id == R.id.nav_riwayat) {
+            startActivity(new Intent(getApplicationContext(), RiwayatActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

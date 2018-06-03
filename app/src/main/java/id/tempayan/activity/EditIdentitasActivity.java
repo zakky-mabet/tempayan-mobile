@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -195,8 +194,6 @@ public class EditIdentitasActivity extends AppCompatActivity {
                     List<String> listSpinner = new ArrayList<String>();
                     for (int i = 0; i < SemuaStatusKeluargaItems.size(); i++){
                         listSpinner.add(SemuaStatusKeluargaItems.get(i).getNama());
-
-
                     }
 
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, listSpinner);
@@ -385,7 +382,6 @@ public class EditIdentitasActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                
                 if (etnik.getText().toString().equals("")) {
                     etnik.setError("NIK diperlukan");
                     etnik.requestFocus();

@@ -45,6 +45,7 @@ public class SharedPrefManager {
         sp = context.getSharedPreferences(SP_TEMPAYAN_MOBILE, Context.MODE_PRIVATE);
         spEditor = sp.edit();
     }
+
     public void saveSPString(String keySP, String value){
         spEditor.putString(keySP, value);
         spEditor.commit();

@@ -206,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
                 android:textStyle="bold"
-                android:text="Upload Persyaratan (File harus Image atau Pdf)" />
+                android:text="Upload Persyaratan " />
 
             <android.support.v7.widget.CardView
                 android:foreground="?android:attr/selectableItemBackground"
@@ -362,8 +362,6 @@
                         </LinearLayout>
 
                     </LinearLayout>
-
-
 
                 </LinearLayout>
 

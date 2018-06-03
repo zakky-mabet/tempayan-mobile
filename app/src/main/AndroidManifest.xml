@@ -1,67 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="id.tempayan">
+<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="id.tempayan">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<!-- To auto-complete the email text field in the login form with the user's emails -->
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <application
-        android:allowBackup="true"
-        android:icon="@drawable/mascot"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+<application
+    android:allowBackup="true"
+    android:icon="@drawable/mascot"
+    android:label="@string/app_name"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
+    <activity
+        android:name=".activity.SplashScreenActivity"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+    <activity
+        android:name=".activity.SigninActivity"
+        android:theme="@style/Theme.AppCompat.NoActionBar" />
+    <activity
+        android:name=".activity.SignupActivity"
+        android:theme="@style/Theme.AppCompat.NoActionBar" />
+    <activity
+        android:name=".activity.MainActivity"
+        android:theme="@style/AppTheme.NoActionBar" />
+    <activity
+        android:name=".activity.ProfilActivity"
+        android:label="Profil"
+        android:parentActivityName=".activity.MainActivity" />
+    <activity
+        android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+        android:theme="@style/Base.Theme.AppCompat" />
+    <activity
+        android:name=".activity.AkunActivity"
+        android:label="Akun"
+        android:parentActivityName=".activity.ProfilActivity" />
+    <activity
+        android:name=".activity.IdentitasActivity"
+        android:label="Identitas Kependudukan"
+        android:parentActivityName=".activity.ProfilActivity" />
+    <activity
+        android:name=".activity.UbahActivity"
+        android:label="Ubah Password"
+        android:parentActivityName=".activity.ProfilActivity" />
+    <activity
+        android:name=".activity.EditIdentitasActivity"
+        android:label="Ubah Identitas"
+        android:parentActivityName=".activity.IdentitasActivity" />
+    <activity
+        android:name=".activity.surat.SkkbActivity"
+        android:parentActivityName=".activity.MainActivity" />
+    <activity
+        android:name=".activity.RiwayatActivity"
+        android:parentActivityName=".activity.MainActivity" />
+    <activity
+        android:name="id.tempayan.activity.surat.frag_skkb.SkkbDetail"
+        android:parentActivityName=".activity.RiwayatActivity"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activity.SplashScreenActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.SigninActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".activity.SignupActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.ProfilActivity"
-            android:label="Profil"
-            android:parentActivityName=".activity.MainActivity" />
-        <activity
-            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat" />
-        <activity
-            android:name=".activity.AkunActivity"
-            android:label="Akun"
-            android:parentActivityName=".activity.ProfilActivity" />
-        <activity
-            android:name=".activity.IdentitasActivity"
-            android:label="Identitas Kependudukan"
-            android:parentActivityName=".activity.ProfilActivity" />
-        <activity
-            android:name=".activity.UbahActivity"
-            android:label="Ubah Password"
-            android:parentActivityName=".activity.ProfilActivity">
-        </activity>
-        <activity
-            android:name=".activity.EditIdentitasActivity"
-            android:label="Ubah Identitas"
-            android:parentActivityName=".activity.IdentitasActivity">
-        </activity>
-        <activity
-            android:name=".activity.surat.SkkbActivity"
-            android:parentActivityName=".activity.MainActivity">
-        </activity>
-    </application>
+    </activity>
+
+</application>
 
 </manifest>
+
