@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,10 +82,19 @@ public class KeteranganFragment extends Fragment {
                                     String getstatus_surat = jsonRESULTS.getString("status_surat");
                                     String getwaktu_mulai = jsonRESULTS.getString("waktu_mulai");
                                     String getwaktu_selesai = jsonRESULTS.getString("waktu_selesai");
+                                    String getreal_status = jsonRESULTS.getString("real_status");
 
                                     status_surat.setText(getstatus_surat);
                                     waktu_mulai.setText(getwaktu_mulai);
                                     waktu_selesai.setText(getwaktu_selesai);
+
+                                    if (getreal_status.equals("no")){
+                                        status_surat.setTextColor(ContextCompat.getColor(getContext(), R.color.pink));
+                                    } else if (getreal_status.equals("yes")) {
+                                        status_surat.setTextColor(ContextCompat.getColor(getContext(), R.color.green));
+                                    } else if (getreal_status.equals("read")) {
+                                        status_surat.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
+                                    }
 
                                 } else {
 

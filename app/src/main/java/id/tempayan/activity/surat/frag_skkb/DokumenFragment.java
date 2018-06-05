@@ -129,7 +129,7 @@ public class DokumenFragment extends Fragment {
                                     Glide.with(getActivity())
                                             .load(persyaratan_surat_surat_pengantar)
                                             .into((ImageView) rootView.findViewById(R.id.iv_surat_pengantar));
-                                    
+
 
 
                                 } else {
