@@ -26,6 +26,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import id.tempayan.R;
 
 import id.tempayan.activity.surat.SkkbActivity;
+import id.tempayan.activity.surat.SktmActivity;
 import id.tempayan.util.SharedPrefManager;
 
 import static id.tempayan.R.string.navigation_drawer_close;
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.skkb)
     LinearLayout skkb;
+
+    @BindView(R.id.sktm)
+    LinearLayout sktm;
 
     TextView tvResultNama;
     TextView tvResultEmail;
@@ -71,6 +75,14 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplication(), SkkbActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+        });
+
+        sktm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(), SktmActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             }
         });

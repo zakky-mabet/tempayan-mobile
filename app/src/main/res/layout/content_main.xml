@@ -132,6 +132,7 @@
             android:layout_height="190dp"
             android:layout_margin="10dp">
             <LinearLayout
+                android:id="@+id/srik"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -147,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="SKPJ"/>
+                    android:text="SRIK"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -157,7 +158,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Keterangan Pindah Jiwa"
+                    android:text="Surat Rekomendasi Izin Keramaian"
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
 
