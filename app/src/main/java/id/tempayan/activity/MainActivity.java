@@ -25,6 +25,8 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import id.tempayan.R;
 
+import id.tempayan.activity.surat.IumkActivity;
+import id.tempayan.activity.surat.KpioActivity;
 import id.tempayan.activity.surat.SkkbActivity;
 import id.tempayan.activity.surat.SktmActivity;
 import id.tempayan.util.SharedPrefManager;
@@ -42,6 +44,15 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.sktm)
     LinearLayout sktm;
+
+    @BindView(R.id.srik)
+    LinearLayout srik;
+
+    @BindView(R.id.iumk)
+    LinearLayout iumk;
+
+    @BindView(R.id.kpio)
+    LinearLayout kpio;
 
     TextView tvResultNama;
     TextView tvResultEmail;
@@ -83,6 +94,30 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplication(), SktmActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+        });
+
+        srik.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(), SrikActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+        });
+
+        iumk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(), IumkActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+        });
+
+        kpio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(), KpioActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             }
         });

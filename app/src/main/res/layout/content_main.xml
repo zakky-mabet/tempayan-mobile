@@ -16,12 +16,26 @@
         android:layout_height="match_parent"
         android:scrollbars="none">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="#f7f7f7"
             android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="-14dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:src="@drawable/banner_paten" />
+
+        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,6 +45,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
                     android:text="SURAT NON PERIZINAN"
                     android:padding="7dp"
                     android:textStyle="bold"/>
@@ -120,6 +135,21 @@
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="SURAT PERIZINAN"
+                    android:textColor="@color/colorPrimary"
+                    android:padding="7dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
     <LinearLayout
         android:clipToPadding="false"
         android:gravity="center"
@@ -158,7 +188,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Surat Rekomendasi Izin Keramaian"
+                    android:text="Rekomendasi Izin Keramaian"
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
 
@@ -171,6 +201,7 @@
             android:layout_margin="10dp">
 
             <LinearLayout
+                android:id="@+id/iumk"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -187,7 +218,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="SKPW"
+                    android:text="IUMK"
                     android:textStyle="bold" />
 
                 <View
@@ -201,7 +232,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Keterangan Pindah WNI"
+                    android:text="Izin Usaha Mikro dan Kecil"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -220,7 +251,7 @@
             android:layout_height="150dp"
             android:layout_margin="10dp">
             <LinearLayout
-
+                android:id="@+id/kpio"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -236,7 +267,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="SIUP"/>
+                    android:text="KPIO"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -246,7 +277,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Izin Usaha Perdagangan"
+                    android:text="Keterangan Perpanjangan Izin Oprasional"
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
 

@@ -5,22 +5,14 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/home"
             android:title="Beranda" />
-        <item
-            android:id="@+id/nav_perizinan"
-            android:icon="@drawable/surat_perizinan"
-            android:title="Surat Perizinan" />
-        <item
-            android:id="@+id/nav_non_perizinan"
-            android:icon="@drawable/dokumen_perizinanan"
-            android:title="Surat Non Perizinan" />
-        <item
-            android:id="@+id/nav_contoh_surat"
-            android:icon="@drawable/surat_view"
-            android:title="Contoh Surat" />
-        <item
-            android:id="@+id/nav_syarat_surat"
-            android:icon="@drawable/surat_perizinan"
-            android:title="Persyaratan Surat-surat" />
+        <!--<item-->
+            <!--android:id="@+id/nav_contoh_surat"-->
+            <!--android:icon="@drawable/surat_view"-->
+            <!--android:title="Contoh Surat" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_syarat_surat"-->
+            <!--android:icon="@drawable/surat_perizinan"-->
+            <!--android:title="Persyaratan Surat-surat" />-->
         <item
             android:id="@+id/nav_profil"
             android:icon="@drawable/icon_account"
@@ -30,9 +22,9 @@
             android:icon="@drawable/history"
             android:title="Riwayat" />
         <item
-            android:id="@+id/nav_pengaturan"
-            android:icon="@drawable/pengaturan"
-            android:title="Pengaturan" />
+            android:id="@+id/nav_about"
+            android:icon="@drawable/icons8_android"
+            android:title="Tentang Aplikasi" />
         <item
             android:id="@+id/nav_keluar"
             android:icon="@drawable/signout"

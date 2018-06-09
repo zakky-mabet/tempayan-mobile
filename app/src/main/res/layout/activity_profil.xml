@@ -77,8 +77,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="2dp">
+                android:layout_height="wrap_content">
 
                 <android.support.v7.widget.CardView
                     android:foreground="?android:attr/selectableItemBackground"
@@ -112,12 +111,15 @@
                 </android.support.v7.widget.CardView>
 
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgray" />
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="2dp">
+                android:layout_height="wrap_content">
 
                 <android.support.v7.widget.CardView
                     android:foreground="?android:attr/selectableItemBackground"
@@ -151,12 +153,14 @@
                 </android.support.v7.widget.CardView>
 
             </LinearLayout>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgray" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="2dp">
+                android:layout_height="wrap_content">
 
                 <android.support.v7.widget.CardView
                     android:foreground="?android:attr/selectableItemBackground"

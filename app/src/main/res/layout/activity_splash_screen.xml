@@ -51,10 +51,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="1dp"
-            android:text="Aplikasi Pelayanan Administrasi Surat Perizinan dan Non Perizinan  \n Kecamatan Koba"
+            android:text="Aplikasi Pelayanan Administrasi Terpadu \n Surat Perizinan dan Non Perizinan  \n Kecamatan Koba"
             android:textAlignment="center"
             android:textColor="#737373"
-            android:textSize="9sp" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 

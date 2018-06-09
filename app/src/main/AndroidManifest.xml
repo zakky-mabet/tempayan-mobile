@@ -65,11 +65,18 @@
         <activity
             android:name=".activity.surat.frag_skkb.SkkbDetail"
             android:parentActivityName=".activity.RiwayatActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.surat.SktmActivity"
-            android:parentActivityName=".activity.MainActivity"></activity>
-        <activity android:name=".activity.SrikActivity"></activity>
+            android:parentActivityName=".activity.MainActivity" />
+        <activity android:name=".activity.SrikActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity android:name=".activity.surat.IumkActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity android:name=".activity.surat.KpioActivity"
+            android:parentActivityName=".activity.MainActivity" >
+
+        </activity>
     </application>
 
 </manifest>
