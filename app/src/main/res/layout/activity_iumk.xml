@@ -162,7 +162,7 @@
                                 android:id="@+id/etnpwp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="NPWP "
+                                android:hint="No NPWP "
                                 android:inputType="text" />
 
                         </android.support.design.widget.TextInputLayout>
@@ -215,7 +215,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Jumlah Modal"
-                                android:inputType="text" />
+                                android:inputType="number" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -310,16 +310,15 @@
                             android:layout_height="1dp"
                             android:background="@color/lightgray" />
 
-
                         <LinearLayout
-                            android:id="@+id/pasphoto"
+                            android:id="@+id/buktilunaspbb"
                             android:layout_width="match_parent"
                             android:layout_height="fill_parent"
                             android:orientation="horizontal"
                             android:padding="8dp">
 
                             <de.hdodenhof.circleimageview.CircleImageView
-                                android:id="@+id/pasphotoavatar"
+                                android:id="@+id/buktilunaspbbavatar"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:src="@drawable/icons8_attach"
@@ -333,17 +332,17 @@
                                 android:layout_height="wrap_content">
 
                                 <TextView
-                                    android:id="@+id/pasphototitle"
+                                    android:id="@+id/buktilunaspbbtitle"
                                     android:paddingTop="3dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
                                     android:layout_gravity="center_vertical"
-                                    android:text="Pas Photo Berwarna"
+                                    android:text="Bukti Lunas PBB Tahun Berakhir"
                                     android:paddingHorizontal="10dp"/>
 
                                 <TextView
-                                    android:id="@+id/pasphotosubtitle"
+                                    android:id="@+id/buktilunaspbbsubtitle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
@@ -359,6 +358,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@color/lightgray" />
+
 
                         <LinearLayout
                             android:id="@+id/npwp"
@@ -388,7 +388,7 @@
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
                                     android:layout_gravity="center_vertical"
-                                    android:text="Bukti Lunas PBB Tahun Berakhir"
+                                    android:text="NPWP"
                                     android:paddingHorizontal="10dp"/>
 
                                 <TextView
@@ -410,54 +410,7 @@
                             android:background="@color/lightgray" />
 
 
-                        <LinearLayout
-                            android:id="@+id/buktilunaspbb"
-                            android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
-                            android:orientation="horizontal"
-                            android:padding="8dp">
 
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:id="@+id/buktilunaspbbavatar"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/icons8_attach"
-                                android:padding="10dp"
-                                android:layout_gravity="center_vertical"/>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_gravity="center_vertical"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:id="@+id/buktilunaspbbtitle"
-                                    android:paddingTop="3dp"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textStyle="bold"
-                                    android:layout_gravity="center_vertical"
-                                    android:text="NPWP"
-                                    android:paddingHorizontal="10dp"/>
-
-                                <TextView
-                                    android:id="@+id/buktilunaspbbsubtitle"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
-                                    android:text=""
-                                    android:textColor="@color/green"
-                                    android:paddingHorizontal="10dp"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/lightgray" />
 
 
                         <LinearLayout

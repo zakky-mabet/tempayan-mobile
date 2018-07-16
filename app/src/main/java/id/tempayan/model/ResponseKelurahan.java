@@ -4,10 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ResponseAgama {
-
-    @SerializedName("semuaagama")
-    private List<SemuaAgamaItem> semuaagama;
+public class ResponseKelurahan {
+    @SerializedName("semuakelurahan")
+    private List<SemuaKelurahanItem> semuakelurahan;
 
     @SerializedName("error")
     private boolean error;
@@ -15,12 +14,12 @@ public class ResponseAgama {
     @SerializedName("message")
     private String message;
 
-    public void setSemuaagama(List<SemuaAgamaItem> semuaagama){
-        this.semuaagama = semuaagama;
+    public void setSemuakelurahan(List<SemuaKelurahanItem> semuakelurahan){
+        this.semuakelurahan = semuakelurahan;
     }
 
-    public List<SemuaAgamaItem> getSemuaagama(){
-        return semuaagama;
+    public List<SemuaKelurahanItem> getSemuakelurahan(){
+        return semuakelurahan;
     }
 
     public void setError(boolean error){
@@ -42,8 +41,8 @@ public class ResponseAgama {
     @Override
     public String toString(){
         return
-                "ResponseAgama{" +
-                        "semuaagama = '" + semuaagama + '\'' +
+                "ResponseKelurahan{" +
+                        "semuakelurahan = '" + semuakelurahan + '\'' +
                         ",error = '" + error + '\'' +
                         ",message = '" + message + '\'' +
                         "}";

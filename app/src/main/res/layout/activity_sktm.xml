@@ -188,7 +188,7 @@
                             android:layout_height="wrap_content">
 
                             <android.support.design.widget.TextInputEditText
-                                android:id="@+id/nama_lurah"
+                                android:id="@+id/etnamalurah"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Nama Lurah"
@@ -200,7 +200,7 @@
                             android:layout_height="wrap_content">
 
                             <android.support.design.widget.TextInputEditText
-                                android:id="@+id/nip"
+                                android:id="@+id/etnip"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="NIP"
@@ -213,7 +213,7 @@
                             android:layout_height="wrap_content">
 
                             <android.support.design.widget.TextInputEditText
-                                android:id="@+id/jabatan"
+                                android:id="@+id/etjabatan"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Jabatan"

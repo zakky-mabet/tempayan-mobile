@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -143,7 +144,6 @@ public class SkkbActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void updateDate() {
         ettanggalsurat.setText(sdf.format(myCalendar.getTime()));
@@ -354,7 +354,7 @@ public class SkkbActivity extends AppCompatActivity {
         menu.setDisplayShowHomeEnabled(true);
         menu.setDisplayHomeAsUpEnabled(true);
         menu.setElevation(0);
-        menu.setTitle("Surat Keterangan Kelakuan Baik");
+        menu.setTitle(Html.fromHtml("<small>Surat Keterangan Kelakuan Baik</small>"));
     }
 
     public String getFile_ktp() {

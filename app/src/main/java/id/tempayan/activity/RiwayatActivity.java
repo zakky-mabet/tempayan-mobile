@@ -103,6 +103,6 @@ public class RiwayatActivity extends AppCompatActivity {
         menu.setDisplayShowHomeEnabled(true);
         menu.setDisplayHomeAsUpEnabled(true);
         menu.setElevation(0);
-        menu.setTitle("Riwayat Pelayanan");
+        menu.setTitle("Riwayat Permohonan");
     }
 }

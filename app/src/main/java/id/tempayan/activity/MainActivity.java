@@ -2,14 +2,14 @@ package id.tempayan.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
-
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +24,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import id.tempayan.R;
-
 import id.tempayan.activity.surat.IumkActivity;
 import id.tempayan.activity.surat.KpioActivity;
 import id.tempayan.activity.surat.SkkbActivity;
@@ -57,6 +56,9 @@ public class MainActivity extends AppCompatActivity
     TextView tvResultNama;
     TextView tvResultEmail;
     SharedPrefManager sharedPrefManager;
+
+    TextView textPemberitahuanItemCount;
+    int mPemberitahuanItemCount = 2;
 
     @Override
     protected void onCreate (Bundle savedInstanceState){
@@ -161,8 +163,40 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        final MenuItem menuItem = menu.findItem(R.id.action_pemberitahuan);
+
+        View actionView = MenuItemCompat.getActionView(menuItem);
+        textPemberitahuanItemCount = (TextView) actionView.findViewById(R.id.pemberitahuan_badge);
+
+        setupBadge();
+
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(menuItem);
+            }
+        });
+
         return true;
     }
+
+    private void setupBadge() {
+
+        if (textPemberitahuanItemCount != null) {
+            if (mPemberitahuanItemCount == 0) {
+                if (textPemberitahuanItemCount.getVisibility() != View.GONE) {
+                    textPemberitahuanItemCount.setVisibility(View.GONE);
+                }
+            } else {
+                textPemberitahuanItemCount.setText(String.valueOf(Math.min(mPemberitahuanItemCount, 99)));
+                if (textPemberitahuanItemCount.getVisibility() != View.VISIBLE) {
+                    textPemberitahuanItemCount.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -173,8 +207,10 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            startActivity(new Intent(getApplicationContext(), ProfilActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
         } else if(id == R.id.action_keluar){
+            nav_keluar();
+        }  else if(id == R.id.action_pemberitahuan) {
             nav_keluar();
         }
 
@@ -200,6 +236,10 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_riwayat) {
             startActivity(new Intent(getApplicationContext(), RiwayatActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
         }
+        else if (id == R.id.nav_about) {
+            startActivity(new Intent(getApplicationContext(), TentangActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

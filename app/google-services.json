@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "422507161715",
+    "firebase_url": "https://patenkoba.firebaseio.com",
+    "project_id": "patenkoba",
+    "storage_bucket": "patenkoba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422507161715:android:387871e27cbc0f9d",
+        "android_client_info": {
+          "package_name": "id.tempayan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "422507161715-8jt8tjssgjcqmb4bd7jbdbkkojv5aop7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQSY1Q4lSUU-zOmAhD7n-jfAU1TNyqGy0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

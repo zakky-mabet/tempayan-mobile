@@ -2,6 +2,7 @@ package id.tempayan.apihelper;
 
 import id.tempayan.model.ResponseAgama;
 import id.tempayan.model.ResponseGolonganDarah;
+import id.tempayan.model.ResponseKelurahan;
 import id.tempayan.model.ResponseStatusKawin;
 import id.tempayan.model.ResponseStatusKeluarga;
 import okhttp3.MultipartBody;
@@ -50,6 +51,9 @@ public interface BaseApiService {
     @GET("master_data/statuskeluarga/")
     Call<ResponseStatusKeluarga> getSemuaStatusKeluarga();
 
+    @GET("master_data/kelurahan/")
+    Call<ResponseKelurahan> getSemuaKelurahan();
+
     @FormUrlEncoded
     @POST("auth/ubahidentitas/")
     Call<ResponseBody> ubahidentitasrequest(@Field("id") String id,
@@ -93,6 +97,62 @@ public interface BaseApiService {
             @Part MultipartBody.Part ktp_pemohon,
             @Part MultipartBody.Part kk_pemohon,
             @Part MultipartBody.Part surat_pengantar
+    );
+
+    @Multipart
+    @POST("surat/sktm/")
+    Call<ResponseBody> Sktm(
+            @Part("id") RequestBody  id,
+            @Part("nik") RequestBody nik,
+            @Part("no_surat") RequestBody no_surat,
+            @Part("tanggal_surat") RequestBody tanggal_surat,
+            @Part("keperluan") RequestBody keperluan,
+            @Part("namalurah") RequestBody namalurah,
+            @Part("nip") RequestBody nip,
+            @Part("jabatan") RequestBody jabatan,
+            @Part MultipartBody.Part ktp_pemohon,
+            @Part MultipartBody.Part kk_pemohon,
+            @Part MultipartBody.Part surat_pengantar
+    );
+
+    @Multipart
+    @POST("surat/srik/")
+    Call<ResponseBody> Srik(
+            @Part("id") RequestBody  id,
+            @Part("nik") RequestBody nik,
+            @Part("no_surat") RequestBody no_surat,
+            @Part("tanggal_surat") RequestBody tanggal_surat,
+            @Part("keperluan") RequestBody keperluan,
+            @Part("jeniskegiatan") RequestBody jeniskegiatan,
+            @Part("hari") RequestBody hari,
+            @Part("tanggal_kegiatan") RequestBody tanggal_kegiatan,
+            @Part("waktu") RequestBody waktu,
+            @Part("tempat") RequestBody tempat,
+            @Part("hiburan") RequestBody hiburan,
+            @Part MultipartBody.Part ktp_pemohon,
+            @Part MultipartBody.Part surat_pengantar,
+            @Part MultipartBody.Part surat_pernyataan
+    );
+
+    @Multipart
+    @POST("surat/iumk/")
+    Call<ResponseBody> Iumk(
+            @Part("id") RequestBody  id,
+            @Part("nik") RequestBody nik,
+            @Part("namaperusahaan") RequestBody namaperusahaan,
+            @Part("bentukperusahaan") RequestBody bentukperusahaan,
+            @Part("npwp") RequestBody npwp,
+            @Part("kegiatan") RequestBody kegiatan,
+            @Part("sarana") RequestBody sarana,
+            @Part("alamat") RequestBody alamat,
+            @Part("jumlahmodal") RequestBody jumlahmodal,
+            @Part("nopendaftaran") RequestBody nopendaftaran,
+            @Part MultipartBody.Part ktppemohon,
+            @Part MultipartBody.Part buktilunaspbb,
+            @Part MultipartBody.Part syaratnpwp,
+            @Part MultipartBody.Part suratpersetujuantetangga,
+            @Part MultipartBody.Part suratpermohonan,
+            @Part MultipartBody.Part suratrekomendasilurah
     );
 
     @GET("surat/get_byid_surat/{id}")

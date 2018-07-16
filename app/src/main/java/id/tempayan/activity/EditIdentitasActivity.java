@@ -4,9 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,11 +33,13 @@ import id.tempayan.R;
 import id.tempayan.apihelper.BaseApiService;
 import id.tempayan.apihelper.UtilsApi;
 import id.tempayan.model.ResponseAgama;
+import id.tempayan.model.ResponseGolonganDarah;
+import id.tempayan.model.ResponseKelurahan;
 import id.tempayan.model.ResponseStatusKawin;
 import id.tempayan.model.ResponseStatusKeluarga;
 import id.tempayan.model.SemuaAgamaItem;
-import id.tempayan.model.ResponseGolonganDarah;
 import id.tempayan.model.SemuaGolonganDarahItem;
+import id.tempayan.model.SemuaKelurahanItem;
 import id.tempayan.model.SemuaStatusKawinItem;
 import id.tempayan.model.SemuaStatusKeluargaItem;
 import id.tempayan.util.SharedPrefManager;
@@ -48,8 +50,7 @@ import retrofit2.Response;
 
 public class EditIdentitasActivity extends AppCompatActivity {
 
-
-    TextInputEditText etnik,etnokk,etnamalengkap,ettempatlahir,ettanggallahir, etalamat,etrt,etrw,etdesa,etkecamatan,etkodepos,etpekerjaan;
+    TextInputEditText etnik,etnokk,etnamalengkap,ettempatlahir,ettanggallahir, etalamat,etrt,etrw,etkecamatan,etkodepos,etpekerjaan;
     RadioGroup rgjeniskelamin, rgkewarganegaraan;
     RadioButton rblakilaki, rbperempuan, rbwni, rbwna;
 
@@ -69,6 +70,9 @@ public class EditIdentitasActivity extends AppCompatActivity {
 
     @BindView(R.id.spinnerStatusKeluarga)
     Spinner spinnerStatusKeluarga;
+
+    @BindView(R.id.spinnerKelurahan)
+    Spinner spinnerKelurahan;
 
     @BindView(R.id.bubah)
     Button bubah;
@@ -94,7 +98,6 @@ public class EditIdentitasActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -107,7 +110,7 @@ public class EditIdentitasActivity extends AppCompatActivity {
         ettanggallahir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
+
                 new DatePickerDialog(mContext, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -138,6 +141,23 @@ public class EditIdentitasActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedName = parent.getItemAtPosition(position).toString();
                 spinnerAgama.setSelection(((ArrayAdapter<String>)spinnerAgama.getAdapter()).getPosition(selectedName));
+                //requestDetailDosen(selectedName);
+                //Toast.makeText(mContext, "Kamu memilih agama " + selectedName, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        initSpinerKelurahan();
+
+        spinnerKelurahan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedName = parent.getItemAtPosition(position).toString();
+                spinnerKelurahan.setSelection(((ArrayAdapter<String>)spinnerKelurahan.getAdapter()).getPosition(selectedName));
                 //requestDetailDosen(selectedName);
                 //Toast.makeText(mContext, "Kamu memilih agama " + selectedName, Toast.LENGTH_SHORT).show();
             }
@@ -182,8 +202,10 @@ public class EditIdentitasActivity extends AppCompatActivity {
             }
         });
 
+
         set_value();
     }
+
 
     private void initSpinerStatusKeluarga() {
         mApiService.getSemuaStatusKeluarga().enqueue(new Callback<ResponseStatusKeluarga>() {
@@ -217,6 +239,8 @@ public class EditIdentitasActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void initSpinerStatusKawin() {
         mApiService.getSemuaStatusKawin().enqueue(new Callback<ResponseStatusKawin>() {
@@ -278,6 +302,39 @@ public class EditIdentitasActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseAgama> call, Throwable t) {
+                //loading.dismiss();
+                Toast.makeText(mContext, "Koneksi internet bermasalah", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void initSpinerKelurahan() {
+        mApiService.getSemuaKelurahan().enqueue(new Callback<ResponseKelurahan>() {
+            @Override
+            public void onResponse(Call<ResponseKelurahan> call, Response<ResponseKelurahan> response) {
+                if (response.isSuccessful()) {
+                    List<SemuaKelurahanItem> SemuaKelurahanItems = response.body().getSemuakelurahan();
+                    List<String> listSpinner_kelurahan = new ArrayList<String>();
+                    for (int i = 0; i < SemuaKelurahanItems.size(); i++){
+                        listSpinner_kelurahan.add(SemuaKelurahanItems.get(i).getNama());
+                    }
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, listSpinner_kelurahan);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerKelurahan.setAdapter(adapter);
+
+                    String set_default = sharedPrefManager.getSpDesa(); //the value you want the position for
+                    ArrayAdapter myAdap = (ArrayAdapter) spinnerKelurahan.getAdapter(); //cast to an ArrayAdapter
+                    int spinnerPosition = myAdap.getPosition(set_default);
+                    spinnerKelurahan.setSelection(spinnerPosition);
+
+                } else {
+                    Toast.makeText(mContext, "Gagal mengambil data Kelurahan/desa", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseKelurahan> call, Throwable t) {
                 //loading.dismiss();
                 Toast.makeText(mContext, "Koneksi internet bermasalah", Toast.LENGTH_SHORT).show();
             }
@@ -358,9 +415,6 @@ public class EditIdentitasActivity extends AppCompatActivity {
         etrw = (TextInputEditText) findViewById(R.id.etrw);
         etrw.setText(sharedPrefManager.getSpRw());
 
-        etdesa = (TextInputEditText) findViewById(R.id.etdesa);
-        etdesa.setText(sharedPrefManager.getSpDesa());
-
         etkecamatan = (TextInputEditText) findViewById(R.id.etkecamatan);
         etkecamatan.setText(sharedPrefManager.getSpKecamatan());
 
@@ -415,10 +469,6 @@ public class EditIdentitasActivity extends AppCompatActivity {
                     etrw.setError("RW diperlukan");
                     etrw.requestFocus();
                     return;
-                } else if (etdesa.getText().toString().equals("")) {
-                    etdesa.setError("Desa diperlukan");
-                    etdesa.requestFocus();
-                    return;
                 } else if (etkecamatan.getText().toString().equals("")) {
                     etkecamatan.setError("Kecamatan diperlukan");
                     etkecamatan.requestFocus();
@@ -462,10 +512,13 @@ public class EditIdentitasActivity extends AppCompatActivity {
         Spinner spinner_statuskk = (Spinner) findViewById(R.id.spinnerStatusKeluarga);
         final String get_statuskk = spinner_statuskk.getSelectedItem().toString();
 
+        Spinner spinner_desa = (Spinner) findViewById(R.id.spinnerKelurahan);
+        final String get_desa = spinner_desa.getSelectedItem().toString();
+
 
         mApiService.ubahidentitasrequest(sharedPrefManager.getSPIdUserSting(), etnik.getText().toString(), etnokk.getText().toString(),
                 etnamalengkap.getText().toString(), ettempatlahir.getText().toString(), ettanggallahir.getText().toString(), jenis_kelamin.getText().toString(),
-                etalamat.getText().toString(), etrt.getText().toString(), etrw.getText().toString(), etdesa.getText().toString(), etkecamatan.getText().toString(),
+                etalamat.getText().toString(), etrt.getText().toString(), etrw.getText().toString(), get_desa, etkecamatan.getText().toString(),
                 etkodepos.getText().toString(), get_agama, etpekerjaan.getText().toString(), kewarganegaraan.getText().toString(), get_status_kawin, get_goldarah, get_statuskk  )
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -488,7 +541,7 @@ public class EditIdentitasActivity extends AppCompatActivity {
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_RT, etrt.getText().toString());
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_RW, etrw.getText().toString());
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_RTRW, etrt.getText().toString()+" / "+etrw.getText().toString());
-                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_DESA, etdesa.getText().toString());
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_DESA, get_desa);
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_KECAMATAN, etkecamatan.getText().toString());
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_AGAMA, get_agama);
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_PEKERJAAN, etpekerjaan.getText().toString());

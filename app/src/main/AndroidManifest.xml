@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -69,13 +70,19 @@
         <activity
             android:name=".activity.surat.SktmActivity"
             android:parentActivityName=".activity.MainActivity" />
-        <activity android:name=".activity.SrikActivity"
+        <activity
+            android:name=".activity.SrikActivity"
             android:parentActivityName=".activity.MainActivity" />
-        <activity android:name=".activity.surat.IumkActivity"
+        <activity
+            android:name=".activity.surat.IumkActivity"
             android:parentActivityName=".activity.MainActivity" />
-        <activity android:name=".activity.surat.KpioActivity"
-            android:parentActivityName=".activity.MainActivity" >
-
+        <activity
+            android:name=".activity.surat.KpioActivity"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity
+            android:name=".activity.TentangActivity"
+            android:parentActivityName=".activity.MainActivity">
         </activity>
     </application>
 

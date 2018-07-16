@@ -250,11 +250,12 @@
                         android:layout_height="wrap_content">
 
                         <android.support.design.widget.TextInputEditText
-                            android:id="@+id/ettanggal"
+                            android:id="@+id/ettanggalkegiatan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Tanggal Kegiatan"
-                            android:inputType="textMultiLine" />
+                            android:focusable="false"
+                            android:inputType="text" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -371,7 +372,7 @@
                         android:background="@color/lightgray" />
 
                     <LinearLayout
-                        android:id="@+id/kkpemohon"
+                        android:id="@+id/surat_pengantar"
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:orientation="horizontal"

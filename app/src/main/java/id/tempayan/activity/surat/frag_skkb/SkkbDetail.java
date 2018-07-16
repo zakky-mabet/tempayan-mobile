@@ -14,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -112,7 +113,7 @@ public class SkkbDetail extends AppCompatActivity {
 
             @Override
             public CharSequence getPageTitle(int position) {
-                return tabNames[position];
+               return tabNames[position];
 
             }
 
@@ -137,13 +138,17 @@ public class SkkbDetail extends AppCompatActivity {
 
     }
 
+
     private View getTabView(int position) {
         View view = LayoutInflater.from(SkkbDetail.this).inflate(R.layout.view_tabs, null);
 
         TextView text = (TextView) view.findViewById(R.id.tab_text);
+        //AppBarLayout appbar = (AppBarLayout) view.findViewById(R.id.appbar);
 
         text.setText(tabNames[position]);
-        text.setTextColor(setTextselector(Color.parseColor("#F2F2F2"), Color.parseColor("#FFFFFF")));
+        text.setTextColor(setTextselector(Color.parseColor("#ffbf7a"), Color.parseColor("#FFFFFF")));
+
+        //appbar.setTargetElevation(0);
 
         return view;
     }
@@ -158,8 +163,8 @@ public class SkkbDetail extends AppCompatActivity {
         menu.setDisplayShowHomeEnabled(true);
         menu.setDisplayHomeAsUpEnabled(true);
         menu.setElevation(0);
-        menu.setTitle(nama_surat);
-        menu.setSubtitle(id_pelayanan);
+        menu.setTitle(Html.fromHtml("<small>"+nama_surat+"</small>"));
+        menu.setSubtitle(Html.fromHtml("<small>"+id_pelayanan+"</small>"));
 
 
     }
